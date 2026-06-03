@@ -48,7 +48,7 @@ fun SplashScreen(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center // Centrado vertical
     ) {
-        // Usamos la imagen subida por el usuario: botella.png
+
         Image(
             painter = painterResource(id = R.drawable.botella),
             contentDescription = "Botella",

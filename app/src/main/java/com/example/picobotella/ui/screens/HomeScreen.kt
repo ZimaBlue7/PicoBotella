@@ -1,5 +1,6 @@
 package com.example.picobotella.ui.screens
 
+import android.media.MediaPlayer
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -12,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -21,9 +23,33 @@ import com.example.picobotella.R
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
-    // Estado para el contador (empieza en 3 según HU 2.0)
-    var counter by remember { mutableStateOf("3") }
+    val context = LocalContext.current
     
+    // Música de fondo (HU 2.0)
+    // Se usa un bloque try-catch por si el archivo sonido_fondo aún no existe
+    val mediaPlayer = remember {
+        try {
+            // Buscamos el recurso por nombre dinámicamente para evitar errores de compilación
+            val resId = context.resources.getIdentifier("sonido_fondo", "raw", context.packageName)
+            if (resId != 0) MediaPlayer.create(context, resId) else null
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    DisposableEffect(Unit) {
+        mediaPlayer?.apply {
+            isLooping = true
+            start()
+        }
+        onDispose {
+            mediaPlayer?.apply {
+                if (isPlaying) stop()
+                release()
+            }
+        }
+    }
+
     // Animación de escala para el efecto de parpadeo (pulso) en el botón
     val infiniteTransition = rememberInfiniteTransition(label = "pulse")
     val scale by infiniteTransition.animateFloat(
@@ -62,25 +88,23 @@ fun HomeScreen(navController: NavHostController) {
 
             // 4. Contador en el centro de la botella
             Text(
-                text = counter,
+                text = "3",
                 color = Color.White,
-                fontSize = 60.sp,
+                fontSize = 80.sp,
                 fontWeight = FontWeight.Black,
-                modifier = Modifier.padding(top = 20.dp) // Ajuste leve según la forma de tu botella
+                modifier = Modifier.padding(top = 20.dp)
             )
         }
 
         // 5. Botón naranja parpadeante "PRESIONAME"
         Button(
-            onClick = { 
-                // Aquí irá la lógica de giro de la HU 11.0 más adelante
-            },
+            onClick = { /* Próxima etapa: HU 11.0 Giro de botella */ },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 80.dp)
-                .scale(scale), // Efecto de parpadeo
+                .scale(scale),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFFFA500) // Naranja
+                containerColor = Color(0xFFFFA500)
             )
         ) {
             Text(
