@@ -37,6 +37,7 @@ android {
     }
     buildFeatures {
         compose = true
+        dataBinding = true
     }
 }
 
@@ -56,6 +57,8 @@ dependencies {
     // Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     ksp(libs.androidx.room.compiler)
 
     // Coroutines
