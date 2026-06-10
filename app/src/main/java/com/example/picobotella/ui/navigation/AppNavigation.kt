@@ -1,13 +1,12 @@
 package com.example.picobotella.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.fragment.app.Fragment
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.picobotella.ui.screens.HomeScreen
 import com.example.picobotella.ui.screens.SplashScreen
-import com.example.picobotella.ui.screens.Fragment
+
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
@@ -22,14 +21,12 @@ fun AppNavigation() {
         composable(Routes.Home.route) {
             HomeScreen(navController)
         }
-        //Una vez realizadas las screens de instrucciones y retos, se deben agregar aquí
+        // Las rutas de Instrucciones y Retos se activarán cuando terminemos sus pantallas
         composable(Routes.Instrucciones.route) {
-            Fragment(navController)
+            // Pantalla temporal o placeholder
         }
         composable(Routes.Retos.route) {
-            Fragment(navController)
+            // Pantalla temporal o placeholder
         }
-
-        // Agregaremos las demás pantallas (Instrucciones, Retos) en los siguientes pasos
     }
 }
