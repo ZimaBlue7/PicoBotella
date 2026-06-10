@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="isSoundOn"
+            type="Boolean" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@android:color/black"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="8dp"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <ImageButton
+                android:id="@+id/btn_playstore"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/start"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="#FFA500"
+                android:padding="12dp"
+                android:scaleType="fitCenter" />
+
+            <ImageButton
+                android:id="@+id/btn_add"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/add_symbol"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="#FFA500"
+                android:padding="12dp"
+                android:scaleType="fitCenter" />
+
+            <ImageButton
+                android:id="@+id/btn_sound"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@{isSoundOn ? @drawable/sound : @drawable/no_sound}"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="#FFA500"
+                android:padding="12dp"
+                android:scaleType="fitCenter" />
+
+            <ImageButton
+                android:id="@+id/btn_challenges"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/control_videogame"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="#FFA500"
+                android:padding="12dp"
+                android:scaleType="fitCenter" />
+
+            <ImageButton
+                android:id="@+id/btn_share"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/outline_share_24"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="#FFA500"
+                android:padding="12dp"
+                android:scaleType="fitCenter" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
