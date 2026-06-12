@@ -24,11 +24,19 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.picobotella.R
 import com.example.picobotella.ui.navigation.Routes
+import kotlinx.coroutines.delay
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
     val context = LocalContext.current
-    
+    // 1. Lógica del Conteo Regresivo (De 3 a 0)
+    var countdown by remember { mutableIntStateOf(3) }
+    LaunchedEffect(Unit) {
+        while (countdown > 0) {
+            delay(1000)
+            countdown--
+        }
+    }
     // Estado para el sonido
     var isSoundOn by remember { mutableStateOf(true) }
 
@@ -144,7 +152,7 @@ fun HomeScreen(navController: NavHostController) {
                 contentScale = ContentScale.Fit
             )
             Text(
-                text = "3",
+                text = countdown.toString(),
                 color = Color.White,
                 fontSize = 80.sp,
                 fontWeight = FontWeight.Black,
